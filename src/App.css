@@ -18,8 +18,9 @@
 .App{
     font-family: "Yrsa", serif;
     border-radius: 0%;
-    background-color: var(--pink);
-    background-image: radial-gradient(circle farthest-side at 0% 75%, #969AF2,#C2BDFD,#D4B4FB,#B2B6FE,#FFB4F0);
+    /* background-color: var(--pink); */
+    background-image: radial-gradient(circle farthest-side at 0% 65%,#f8efec, #f8eeeb, #f7efe8, #faf2e9, #faf4ea, #fbf6ea, #fbf7eb, #fcf8ed, #fcf8ec, #fcf5e5, #fbf1de, #fbeeda, #fbecd9, #fbecdc, #faede0);
+    /* background-image: radial-gradient(circle farthest-side at 0% 75%, #969AF2,#C2BDFD,#D4B4FB,#B2B6FE,#FFB4F0); */
     overflow: hidden;
     color: var(--black);    
 }

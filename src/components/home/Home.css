@@ -97,6 +97,12 @@
     border-radius:50px;
 }
 
+.h-buto .newlnk{
+  color: aliceblue;
+  text-decoration: none;
+  font-weight: 800;
+}
+
 .h-right{
     flex: 1;
     position: relative;
@@ -121,9 +127,9 @@
 }
 
 .h-right>:nth-child(3){
-  transform: scale(1.8);
-  top: 0rem;
-  left: 5rem;
+  transform: scale(0.9);
+  top: -8rem;
+  left: 3rem;
 }
 
 .ftd{

@@ -4,9 +4,10 @@ import Vector1 from '../../image/Vector1.png';
 import Vector2 from '../../image/Vector2.png';
 import Thumbs from '../../image/thumbup.png';
 import ThumbsDown from '../../image/thumbdown.png';
-import Injury from '../../image/injures-removebg-preview.png';
+import Injury from '../../image/injury.png';
 import FloatingDiv from '../floatingDiv/FloatingDiv';
 import FloatDiv from '../floatingDiv/FloatDiv';
+import { Link } from 'react-router-dom';
 
 // import Ppbg from '../../image/purpleblur.png';
 // import Emj from '../../image/glassesimoji.png';
@@ -25,7 +26,9 @@ const Home = () => {
         
         </span>
       </div>
-      <button className='h-buto'>Try it Now !!</button>
+      <button className='h-buto'>
+      <Link className='newlnk' to='/signup'>SignUp for Free !!</Link>
+      </button>
       </div>
       <div className='h-right'>
         <img src={Vector1} alt='v1'/>

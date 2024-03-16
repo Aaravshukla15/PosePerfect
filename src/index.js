@@ -4,23 +4,29 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import Signup from './components/signup/Signup';
+import Login from './components/login/login';
+import Signup from './components/signuppages/SignUppages';
+import StepContext from './StepContext';
 
 const router = createBrowserRouter([
-{
-  path:"/",
-  element: <App/>,
-},
-{
-  path:"signup",
-  element: <Signup/>,
-}
+  {
+    path: "/",
+    element: <App />,
+  },
+  {
+    path: "login",
+    element: <Login />,
+  },
+  {
+    path: "signup",
+    element: <StepContext> <Signup /></StepContext>,
+  }
 ])
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-  <RouterProvider router={router} />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 

@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import Pose from '../../image/Pose Perfect.png';
+// import Pose from '../../image/Pose Perfect.png';
+// import Pose from '../../image/pp_logo.png';
+import Pose from '../../image/OSE__1_-removebg-preview.png';
+
 import './Navbar.css';
 import {  NavLink } from 'react-router-dom';
 
@@ -26,7 +29,7 @@ const Navbar = () => {
           <li><NavLink className='links'>About</NavLink></li>
           
           <button className='buts' >
-          <NavLink className='links' to='/signup'>SignUp</NavLink>
+          <NavLink className='links' to='/login'>Login</NavLink>
           </button>
         </ul>
         </div>

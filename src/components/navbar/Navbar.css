@@ -5,6 +5,7 @@
      backdrop-filter: blur(5px);
     background-color:transparent ;
     padding: 0rem 0.4rem;
+    
     margin-bottom: 2rem;
     /* position: fixed; */
     /* width: 100%; */
@@ -20,7 +21,8 @@
 
 .n-limg{
     /* height: 8.5vh; */
-    width: 10vh;
+    padding-top: 5px;
+    width: 12vh;
 }
 .n-right{
     display: flex;
