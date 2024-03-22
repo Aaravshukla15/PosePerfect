@@ -23,8 +23,8 @@
 @media screen and (max-width: 480px){
 
     .floatDiv{
-        height: 48px;
-        width: 150px;    
+        height: 50px;
+        width: 180px;    
         position: relative;
     }
 

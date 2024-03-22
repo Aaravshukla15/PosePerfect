@@ -23,7 +23,7 @@ function Secondstep() {
 
     const handleEmailChange = (e) => {
         const newEmail = e.target.value;
-        setUserData({ ...userData, emailid: newEmail });
+        setUserData({ ...userData, email: newEmail });
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(newEmail)) {
             formRef.current.setCustomValidity('Please enter a valid email address');

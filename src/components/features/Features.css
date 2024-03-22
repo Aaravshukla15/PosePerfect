@@ -1,3 +1,38 @@
-.f-lead{
-    height: 60vh;
+.exercise {
+    display: flex;
+    height: 70vh;
+    position: relative;
+}
+
+.exright {
+    display: flex;
+    position: relative;
+    flex: 1;
+    flex-direction: column;
+    padding-left: 3rem;
+    gap: 2rem;
+}
+
+.exleft {
+    flex: 1;
+    position: relative;
+}
+
+.exleft>* {
+    position: absolute;
+    z-index: 1;
+}
+
+.exrightinner {
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.exrightinner>img {
+    width: 36rem;
+    height: auto;
+    border-radius: 10px;
+    margin-left: 2rem;
 }

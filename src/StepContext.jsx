@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Signup from './components/signuppages/SignUppages';
+import axios from 'axios';
 
 export const multiStepContext = React.createContext();
 
@@ -14,7 +15,18 @@ const StepContext = () => {
         setUserData(' ');
         setStep(1);
         console.log(userData);
+        axios.post('http://localhost:8000/posts/', userData)
+            .then(response => {
+                console.log('Data sent successfully');
+                console.log(response);
+            })
+            .catch(error => {
+                console.error('Error sending data:', error);
+            });
     }
+
+
+
 
     return (
         <div>
