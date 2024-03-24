@@ -7,6 +7,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Login from './components/login/login';
 import Signup from './components/signuppages/SignUppages';
 import StepContext from './StepContext';
+import Redirect from './components/redirect/Redirect';
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,11 @@ const router = createBrowserRouter([
   {
     path: "login",
     element: <Login />,
+  },
+
+  {
+    path: "redirect",
+    element: <Redirect />,
   },
   {
     path: "signup",

@@ -1,6 +1,7 @@
 import React from 'react';
 import './Features.css';
 import EXAV from '../../photo/exav.jpg';
+import Leftside from '../../photo/left.png';
 
 
 const Features = () => {
@@ -9,12 +10,15 @@ const Features = () => {
   return (
     <div class="exercise">
       <div class='exright'>
-        <div class="exrightinner">
-          <img src={EXAV} alt='exav' />
-        </div>
+        <img src={EXAV} alt='exav' />
+        <img src={Leftside} alt='' />
       </div>
       <div class='exleft'>
-        <span>YOur Personalized <br /> AI Coach-Anytime <br /> Anywhere</span>
+        <span>Your Personalized </span>
+        <span>AI Fitness Coach</span>
+        <span>Anytime-Anywhere</span>
+        <span>"Unlock personalized guidance and refine your exercise form
+          with our AI Fitness Coach, accessible anytime and anywhere you go!"</span>
       </div>
     </div>
   );

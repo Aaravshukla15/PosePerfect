@@ -109,6 +109,19 @@
       "gender": "Male",
       "height": "4.6",
       "weight": "57"
+    },
+    {
+      "id": "c98b",
+      "firstname": "Narendra",
+      "lastname": "Modi",
+      "email": "modi@gmail.com",
+      "password": "Modi@29291",
+      "contact": "9232323220",
+      "address": "adeeeesddssa",
+      "age": "45",
+      "gender": "Male",
+      "height": "123",
+      "weight": "45"
     }
   ]
 }
