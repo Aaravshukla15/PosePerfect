@@ -15,7 +15,7 @@ const StepContext = () => {
         setUserData(' ');
         setStep(1);
         console.log(userData);
-        axios.post('http://localhost:8000/posts/', userData)
+        axios.post("http://127.0.0.1:8000/api/auth/register/", userData)
             .then(response => {
                 console.log('Data sent successfully');
                 console.log(response);

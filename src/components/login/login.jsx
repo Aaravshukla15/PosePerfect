@@ -111,14 +111,18 @@ import { FaUser } from 'react-icons/fa';
 import { FaLock } from 'react-icons/fa';
 import Navbar from '../navbar/Navbar';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
-const Login = ({ history }) => {
+
+
+const Login = () => {
   const initialLoginData = {
-    username: '',
+    email: '',
     password: '',
     rememberMe: false
   };
 
+  const history = useNavigate();
   // State to store login data
   const [loginData, setLoginData] = useState(initialLoginData);
   // State to store email validation error
@@ -129,8 +133,8 @@ const Login = ({ history }) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:8000/api/v1/auth/obtain_token/', {
-        username: loginData.username,
+      const response = await axios.post('http://127.0.0.1:8000/api/auth/login/', {
+        email: loginData.email,
         password: loginData.password,
       });
 
@@ -138,7 +142,7 @@ const Login = ({ history }) => {
       localStorage.setItem('refresh_token', response.data.refresh);
 
       // Redirecting to Home page
-      history.push('/redirect');
+      history('/redirect');
     } catch (error) {
       console.error('Login failed:', error);
     }
@@ -146,11 +150,11 @@ const Login = ({ history }) => {
 
   // Function to handle changes in input fields
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value } = e.target;
     let newValue = value;
 
     // Validate email format if it's the username field
-    if (name === 'username') {
+    if (name === 'email') {
       newValue = value.trim(); // Remove leading and trailing spaces
       const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(newValue);
       if (!isValidEmail) {
@@ -159,6 +163,7 @@ const Login = ({ history }) => {
         setEmailError('');
       }
     }
+
 
     // Update loginData state
     setLoginData(prevData => ({
@@ -177,9 +182,9 @@ const Login = ({ history }) => {
             <div className='input-box'>
               <input
                 type='text'
-                placeholder='Username'
-                name='username'
-                value={loginData.username}
+                placeholder='email'
+                name='email'
+                value={loginData.email}
                 onChange={handleChange}
                 required
               />

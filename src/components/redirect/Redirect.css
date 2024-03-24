@@ -1,0 +1,45 @@
+.main{
+  background-image: radial-gradient(circle farthest-side at 0% 65%,#ffc1ad, #ffe3db, #ffcd95c8, #faf2e9, #faf4ea, #fbf6ea, #fbf7eb, #fcf8ed, #fcf8ec, #fcf5e5, #fbf1de, #fbeeda, #ffe8c9, #ffe37c70, #fcd8b7);
+      height: 100vh;
+ font-family: "Yrsa", serif;
+}
+
+.continer {
+    text-align: center;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #ccc;
+  padding: 20px;
+  width: 50%;
+  bottom: - 5rem;
+  margin: 0 auto;
+}
+
+.continer>div>ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul>li {
+  margin-bottom: 10px;
+}
+
+.continer>button {
+  font-size: 16px;
+  font-weight: bold;
+  padding: 18px 18px;
+  opacity: 80%;
+  color: #fff;
+  font-size: 16px;
+  border: solid 2px wheat;
+  border: none;
+  cursor: pointer;
+  border-radius: 50px;
+  background: linear-gradient(180deg, #2a002d 27%, #300030 70%);
+  box-shadow: 8px 8px 14px 2px rgba(230, 155, 255, 0.42);
+}
+
+.continer>button:hover {
+  background-color: #d0e6fd;
+  color: black;
+}

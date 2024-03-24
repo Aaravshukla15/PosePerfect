@@ -1,6 +1,8 @@
 // components/Home.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import './Redirect.css';
+import Navbar from '../navbar/Navbar';
 
 const Redirect = () => {
     const [user, setUser] = useState(null);
@@ -25,18 +27,22 @@ const Redirect = () => {
 
                 // Fetch user data with the new access token
                 const newAccessToken = localStorage.getItem('access_token');
-                const response = await axios.get('http://localhost:8000/api/v1/user/', {
+                const response = await axios.get('http://127.0.0.1:8000/api/UserProfile/', {
                     headers: {
                         Authorization: `Bearer ${newAccessToken}`,
                     },
                 });
                 setUser(response.data);
+                // console.log(response.data)
+                // console.log(response.data[0])
+
             } catch (error) {
                 console.error('Failed to fetch user data:', error);
             }
         };
 
         fetchUserData();
+
     }, []);
 
     const isTokenExpired = (token) => {
@@ -48,7 +54,7 @@ const Redirect = () => {
     const refreshToken = async () => {
         try {
             const refreshToken = localStorage.getItem('refresh_token');
-            const response = await axios.post('http://localhost:8000/api/v1/auth/refresh_token/', {
+            const response = await axios.post('http://127.0.0.1:8000/api/auth/refresh/', {
                 refresh: refreshToken,
             });
 
@@ -69,10 +75,36 @@ const Redirect = () => {
         window.location.href = '/login';
     };
 
+
+    const renderUserData = () => {
+        if (!user) return null;
+
+        // Define the selected keys you want to include
+        const selectedKeys = ['firstname', 'lastname', 'email', 'age', 'height', 'weight', 'contact'];
+
+        return selectedKeys.map(key => (
+            <li key={key}>
+                <strong>{key.charAt(0).toUpperCase() + key.slice(1)}:</strong> {user[0][key]}
+            </li>
+        ));
+    };
+
+
     return (
-        <div>
-            <h1>Welcome, {user ? user.username : 'Guest'}</h1>
-            <button onClick={handleLogout}>Logout</button>
+        <div className='main'>
+            <Navbar />
+            <div className='continer'>
+                {user ? (
+                    <div>
+                        <ul>
+                            {renderUserData()}
+                        </ul>
+                    </div>
+                ) : (
+                    <p>Loading...</p>
+                )}
+                <button onClick={handleLogout}>Logout</button>
+            </div>
         </div>
     );
 };
