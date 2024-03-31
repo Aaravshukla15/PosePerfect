@@ -216,9 +216,9 @@
   opacity: 98%;
 }
   .h-right>:nth-child(3){
-  transform: scale(0.8);
-  top: -12rem;
-  left: 1rem;
+  transform: scale(0.48);
+  top: -20rem;
+  left: -1rem;
 }
   .floatdown{
     

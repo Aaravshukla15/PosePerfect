@@ -1,16 +1,28 @@
 .n-wrapper{
-    /* height: 9vh; */
+    height: 9vh;
     display: flex;
     justify-content: space-between;
-     backdrop-filter: blur(5px);
-    background-color:transparent ;
     padding: 0rem 0.4rem;
-    
     margin-bottom: 2rem;
-    /* position: fixed; */
-    /* width: 100%; */
-    /* overflow: hidden; */
+    background: #fff5e9;
     top: 0;
+    border-radius: 0;
+    opacity: 80%;
+    position: relative;
+  transition: top 0.3s, background-color 0.5s;
+  z-index: 1000;
+}
+
+.n-wrapper .blur{
+  
+  backdrop-filter: blur(5px);
+}
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #fff5e9;
+  opacity: 100%;
 }
 
 .n-left{
@@ -49,10 +61,13 @@
     
 }
 
-.n-list>ul>li{
+.n-list>ul>.nli{
     margin-top: 5px;
 }
 
+.noli{
+  margin-top: 5px;
+}
 
 /* .links:hover{
     cursor: pointer;
@@ -62,12 +77,12 @@
     padding: 8px 18px;
 } */
 
-li  :hover{
+.nli  :hover{
    cursor: pointer;
     color: #520000;
-    border: 2px solid #2a002d;
+    /* border: 2px solid #2a002d; */
     border-radius:50px;
-    padding: 8px 18px;
+    /* padding: 8px 18px; */
 }
 
 .buts{
@@ -75,10 +90,11 @@ li  :hover{
     border: solid 2px wheat;
     font-size: 16px;
     font-weight: bold;
+    margin-top: 6px;
     padding: 8px 18px;
     color: aliceblue;
     background-color: aliceblue;
-    background: linear-gradient(180deg, #2a002d 27%, #300030 70%);
+background-image: linear-gradient(50deg,  #ff5b8a 49%, #ff5b8a 53%, #ff5b8a 55%, #fba64b 77%, #f99b52);
     box-shadow: 8px 8px 14px 2px rgba(230, 155, 255, 0.42);
 }
 
@@ -87,15 +103,13 @@ li  :hover{
 }
 
 .buts:hover{
-    background:linear-gradient(180deg, #fddbff 27%, #ffbbff 70%);
     cursor: pointer;
-    color: #2a002d;
-    border: 2px solid #2a002d;
-    padding: 8px 18px;
+  color: #ffebeb;
+  background-image: linear-gradient(315deg, #d10000, #d54aff);
+  border: 8px solid linear-gradient(315deg, #a300d1, #ff844a);
+  border-radius:50px;
 }
-.buts .links:hover{
-  color: #2a002d;
-}
+
 
 .menu{
     display: none;
@@ -125,6 +139,8 @@ li  :hover{
   }
 } */
 
+
+
 @media screen and (max-width: 480px) {
 
   .n-wrapper{
@@ -149,6 +165,8 @@ li  :hover{
 
   ul.open{
     display: flex;
+    background: #fff5e9;
+    opacity: 100%;
   }
   .n-list > ul > li{
     width: 100%;

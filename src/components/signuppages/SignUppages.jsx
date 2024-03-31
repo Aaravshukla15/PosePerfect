@@ -35,25 +35,31 @@ function SignUppages() {
     return (
         <div className='signups'>
             <Navbar ></Navbar>
-            <div className='pghed'>
-                <h2 className='sgup'>Sing Up</h2>
-                <div className='centralStepper'>
-                    <Stepper style={{ width: "19%" }} activeStep={currentStep - 1} orientation='horizontal'>
-                        <Step>
-                            <StepLabel></StepLabel>
-                        </Step>
-                        <Step>
-                            <StepLabel></StepLabel>
-                        </Step>
-                        <Step>
-                            <StepLabel></StepLabel>
-                        </Step>
-                        <Step>
-                            <StepLabel></StepLabel>
-                        </Step>
-                    </Stepper>
+            <div className='signupcover'>
+                <div className='pgcenter'>
+                    <div className='pghed'>
+                        <h2 className='sgup'>Singup</h2>
+                        <div className='centralStepper'>
+                            <Stepper className='steppers' style={{ width: "19%" }} activeStep={currentStep - 1} orientation='horizontal'>
+                                <Step>
+                                    <StepLabel></StepLabel>
+                                </Step>
+                                <Step>
+                                    <StepLabel></StepLabel>
+                                </Step>
+                                <Step>
+                                    <StepLabel></StepLabel>
+                                </Step>
+                                <Step>
+                                    <StepLabel></StepLabel>
+                                </Step>
+                            </Stepper>
+                        </div>
+                        <div className='sgbox'>
+                            {showStep(currentStep)}
+                        </div>
+                    </div>
                 </div>
-                {showStep(currentStep)}
             </div>
         </div>
     )

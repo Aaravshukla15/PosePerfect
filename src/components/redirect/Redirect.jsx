@@ -3,11 +3,14 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Redirect.css';
 import Navbar from '../navbar/Navbar';
+import { Link } from 'react-router-dom';
 
 const Redirect = () => {
     const [user, setUser] = useState(null);
 
     useEffect(() => {
+
+
         const fetchUserData = async () => {
             try {
                 const accessToken = localStorage.getItem('access_token');
@@ -68,19 +71,38 @@ const Redirect = () => {
         }
     };
 
-    const handleLogout = () => {
-        localStorage.removeItem('access_token');
-        localStorage.removeItem('refresh_token');
-        // Redirect to login page
-        window.location.href = '/login';
+    const handleLogout = async () => {
+        try {
+
+            const refreshToken = localStorage.getItem('refresh_token');
+            const response = await axios.post('http://127.0.0.1:8000/api/auth/blacklist/', {
+                refresh: refreshToken,
+            });
+
+            // Check if response is empty
+            if (response.data.length === 0) {
+                // Clear tokens and redirect to login page
+                localStorage.removeItem('access_token');
+                localStorage.removeItem('refresh_token');
+                window.location.href = '/login';
+            }
+            console.log('Done!!', response.data)
+        } catch (error) {
+            console.log('Failed to refresh token:', error);
+            console.error('Failed to refresh token:', error);
+
+            // Clear tokens and redirect to login page
+            window.location.href = '/redirect';
+        }
     };
 
+    console.log(user);
 
     const renderUserData = () => {
         if (!user) return null;
 
         // Define the selected keys you want to include
-        const selectedKeys = ['firstname', 'lastname', 'email', 'age', 'height', 'weight', 'contact'];
+        const selectedKeys = ['firstname', 'lastname', 'email', 'contact', 'age', 'gender', 'height', 'weight'];
 
         return selectedKeys.map(key => (
             <li key={key}>
@@ -94,16 +116,24 @@ const Redirect = () => {
         <div className='main'>
             <Navbar />
             <div className='continer'>
+                <span className='uph'>User Profile</span>
+                <br />
+                <br />
                 {user ? (
                     <div>
-                        <ul>
+                        <ul className='udt'>
                             {renderUserData()}
                         </ul>
                     </div>
                 ) : (
                     <p>Loading...</p>
                 )}
+                <br />
+                <br />
                 <button onClick={handleLogout}>Logout</button>
+                <button ><Link className='sbtn'>Edit Profile</Link></button>
+                <br />
+                <br />
             </div>
         </div>
     );

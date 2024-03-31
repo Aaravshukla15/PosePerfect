@@ -103,3 +103,42 @@ z-index: 1;
     padding-left: 15px;
     padding-right: 15px;
 }
+
+/* Media Queries for Tablet */
+@media only screen and (min-width: 768px) {
+    .exercise {
+        height: 70vh; /* Set height back for tablets */
+    }
+}
+
+/* Media Queries for iPad */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    /* Adjust styles as needed for iPad */
+}
+
+/* Media Queries for Mobile */
+@media only screen and (max-width: 767px) {
+    .exleft>:nth-child(1),
+    .exleft>:nth-child(2),
+    .exleft>:nth-child(3) {
+        font-size: 1.5rem; /* Adjust font size for smaller screens */
+    }
+
+    .exleft>:nth-child(4) {
+        font-size: 1rem; /* Adjust font size for smaller screens */
+    }
+}
+
+
+/* Media Queries for Mobile Phones */
+@media only screen and (max-width: 480px) {
+    .exleft>:nth-child(1),
+    .exleft>:nth-child(2),
+    .exleft>:nth-child(3) {
+        font-size: 1.2rem; /* Adjust font size for smaller screens */
+    }
+
+    .exleft>:nth-child(4) {
+        font-size: 1rem; /* Adjust font size for smaller screens */
+    }
+}

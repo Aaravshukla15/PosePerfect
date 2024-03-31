@@ -8,12 +8,12 @@ const Features = () => {
 
 
   return (
-    <div class="exercise">
-      <div class='exright'>
+    <div className="exercise">
+      <div className='exright'>
         <img src={EXAV} alt='exav' />
         <img src={Leftside} alt='' />
       </div>
-      <div class='exleft'>
+      <div className='exleft'>
         <span>Your Personalized </span>
         <span>AI Fitness Coach</span>
         <span>Anytime-Anywhere</span>

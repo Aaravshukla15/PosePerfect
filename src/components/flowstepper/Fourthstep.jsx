@@ -93,6 +93,7 @@ import React, { useContext } from 'react';
 import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import { multiStepContext } from '../../StepContext';
 import InputAdornment from '@mui/material/InputAdornment';
+import { Link } from 'react-router-dom';
 
 function Fourthstep() {
     const { setStep, userData, setUserData, submitData } = useContext(multiStepContext);
@@ -144,7 +145,7 @@ function Fourthstep() {
                 <TextField
                     required
                     inputRef={formRef}
-                    label="Height (ft.)"
+                    label="Height (cm.)"
                     sx={{ width: '19ch' }}
                     value={userData['height']}
                     onChange={handleHeightChange}
@@ -171,7 +172,10 @@ function Fourthstep() {
             </div>
             <div>
                 <Button varient="contained" onClick={() => setStep(3)} color="secondary">Back </Button>
-                <Button varient="contained" onClick={() => { if (formRef.current.reportValidity()) { submitData() } }} color="primary">Submit </Button>
+                <Button varient="contained" onClick={() => { if (formRef.current.reportValidity()) { submitData() } }} color="primary" >
+                    <Link to='/login' style={{ textDecoration: 'none' }}>Submit</Link>
+
+                </Button>
             </div>
         </div>
     )
