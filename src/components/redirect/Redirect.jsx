@@ -4,6 +4,7 @@ import axios from 'axios';
 import './Redirect.css';
 import Navbar from '../navbar/Navbar';
 import { Link } from 'react-router-dom';
+// import newValue from '../login/login';
 
 const Redirect = () => {
     const [user, setUser] = useState(null);

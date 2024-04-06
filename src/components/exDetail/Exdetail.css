@@ -1,0 +1,93 @@
+.exd-main{
+    min-height: 100vh;
+    background-image: radial-gradient(circle farthest-side at 2% 35%,#ffede7, #ffe3db, #ffcd9558, #faf2e9, #faf4ea, #fbf6ea, #fbf7eb, #fcf8ed, #fcf8ec, #fcf5e5, #fbf1de, #fbeeda, #ffe8c9, #ffe37c70, #fcd8b7);
+    font-family: "Yrsa", serif;
+
+}
+
+.exd-top{
+    min-height: 70vh;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    width: 80%;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.exd-bottom{
+    min-height: 50vh;
+}
+
+.exd-left{
+    flex: 1;
+    min-height: 50vh;
+    /* justify-content: center;
+    align-items: center; */
+    display: flex;
+    flex-direction: column;
+}
+
+.exd-left>:nth-child(1){
+  height: .9em;
+  -webkit-text-fill-color: transparent;
+  background-color: #36312b;
+  background-image: linear-gradient(79deg, #2b0aff, #ff5b8a 49%, #ff5b8a 55%, #fba64b 77%, #f99b52);
+  -webkit-background-clip: text;
+  background-clip: text;
+  margin-left: 4rem;
+  padding-left: 15px;
+  margin-bottom: 2rem;
+  font-size: 4rem;
+}
+
+.exd-left>:nth-child(2){
+     height: 1em;
+  -webkit-text-fill-color: transparent;
+  background-color: #36312b;
+  background-image: linear-gradient(79deg, #2b0aff, #ff5b8a 49%, #ff5b8a 55%, #fba64b 77%, #f99b52);
+  -webkit-background-clip: text;
+  background-clip: text;
+  margin-left: 4rem;
+  padding-left: 15px;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+
+}
+
+.exd-btn{
+    height: 50px;
+  width: 40%;
+  color: #fff;
+  text-align: center;
+  text-transform: none;
+  cursor: pointer;
+  background-color: #a300d1;
+  background-image: linear-gradient(315deg, #a300d1, #ff844a);
+  border: 1px solid;
+  border-radius: 8px;
+  padding: 0 35px;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 50px;
+  margin-left: 65px;
+  padding-left: 35px;
+  transition: all .2s ease-in-out;
+  display: inline-block;
+}
+
+.exd-btn:hover{
+     cursor: pointer;
+    color: #ffebeb;
+    background-image: linear-gradient(315deg, #d10000, #d54aff);
+    border: 8px solid linear-gradient(315deg, #a300d1, #ff844a);
+    border-radius:50px;
+}
+
+.exd-right{
+    flex: 1;
+    min-height: 60vh;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}

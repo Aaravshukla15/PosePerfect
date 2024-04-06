@@ -10,7 +10,7 @@ const Howtouse = () => {
                     <iframe
                         width="100%"
                         height="100%"
-                        src="https://www.youtube.com/embed/ivDdVaZxOPo?si=i_Dho67Hdv32eALj"
+                        src="https://drive.google.com/file/d/15vl_Eg_M3-h4Apo4OUlzqBDHCRcdVkSD/preview"
                         title="YouTube video player"
                         frameBorder="0"  // Corrected from frameborder to frameBorder
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

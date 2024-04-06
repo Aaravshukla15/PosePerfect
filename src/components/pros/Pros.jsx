@@ -32,7 +32,7 @@ const Pros = () => {
                         </div>
                     ))}
                     <button className='buts'>
-                        <NavLink className='links' >Explore More!!</NavLink>
+                        <NavLink className='links' to='/signup'>Explore More!!</NavLink>
                     </button>
                 </div>
                 <div className='cats-right'>

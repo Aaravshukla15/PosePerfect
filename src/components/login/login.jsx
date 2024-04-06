@@ -55,6 +55,7 @@ const Login = () => {
     // Validate email format if it's the username field
     if (name === 'email') {
       newValue = value.trim(); // Remove leading and trailing spaces
+      console.log(newValue)
       const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(newValue);
       if (!isValidEmail) {
         setEmailError('Please enter a valid email address');
