@@ -11,6 +11,7 @@ import Category from './components/category/Category';
 import Exdetail from './components/exDetail/Exdetail';
 import Videorec from './components/exDetail/Videorec';
 import Keypoints from './components/keypoints/Keypoints';
+import About from './components/about/About';
 
 
 
@@ -37,9 +38,17 @@ const router = createBrowserRouter([
         path: "category",
         element: <Category />,
     },
+    // {
+    //     path: "exdetail",
+    //     element: <Exdetail />,
+    // },
     {
-        path: "exdetail",
+        path: '/exdetail/:exerciseName',
         element: <Exdetail />,
+    },
+    {
+        path: '/about',
+        element: <About />,
     },
     {
         path: "videorec",

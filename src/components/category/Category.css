@@ -72,6 +72,10 @@
     flex-direction: column;
 }
 
+.exer>.lonk{
+    text-decoration: none;
+}
+
 .exer:hover {
     border-color: lightgray; /* Change border color on hover */
     color:rgba(60, 0, 149, 0.912); /* Change text color on hover */

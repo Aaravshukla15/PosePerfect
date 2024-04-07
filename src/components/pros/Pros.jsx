@@ -3,20 +3,20 @@ import './Pros.css';
 import { NavLink } from 'react-router-dom';
 
 
-const Yoga = [
-    "Bhujangasna",
-    "Tadasana",
-    "Vrikshasana",
-    "Matasyaasana",
-    "Padmasana"
-]
+// const Yoga = [
+//     "Bhujangasna",
+//     "Tadasana",
+//     "Vrikshasana",
+//     "Matasyaasana",
+//     "Padmasana"
+// ]
 
 const Exercise = [
     "PushUps",
     "PullUps",
     "Crunches",
-    "Banch Press",
-    "XYZ"
+    "Barbell Deadlift",
+    "Barbell Bench Press"
 ]
 
 const Pros = () => {
@@ -35,7 +35,7 @@ const Pros = () => {
                         <NavLink className='links' to='/signup'>Explore More!!</NavLink>
                     </button>
                 </div>
-                <div className='cats-right'>
+                {/* <div className='cats-right'>
                     <h4 className='cat-head'>Yogas</h4>
                     {Yoga.map((yoga, index) => (
                         <div key={index} className='cats-yoga'>
@@ -46,7 +46,7 @@ const Pros = () => {
                     <button className='buts'>
                         <NavLink className='links' to='/signup' >Explore More!!</NavLink>
                     </button>
-                </div>
+                </div> */}
             </div>
         </div>
     )

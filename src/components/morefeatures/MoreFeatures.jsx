@@ -9,11 +9,12 @@ const MoreFeatures = () => {
     return (
         <div className='moreExercise'>
             <div className='moreExleft'>
-                <span>Your Personalized </span>
-                <span>AI Fitness Coach</span>
-                <span>Anytime-Anywhere</span>
-                <span>"Unlock personalized guidance and refine your exercise form
-                    with our AI Fitness Coach, accessible anytime and anywhere you go!"</span>
+                <span>Keep's You</span>
+                <span>Free from Injury</span>
+                <span>By Providing Alerts</span>
+                <span>"Keep yourself free from injury with our AI Fitness Coach,
+                    providing alerts and offering personalized guidance to refine your exercise form anytime,
+                    anywhere you go.!"</span>
             </div>
             <div className='moreExright'>
                 <img src={EXBV} alt='exav' />

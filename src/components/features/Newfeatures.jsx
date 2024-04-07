@@ -14,11 +14,13 @@ const Features = () => {
                 <img src={LastLI} alt='' />
             </div>
             <div className='newExleft'>
-                <span>Your Personalized </span>
-                <span>AI Fitness Coach</span>
-                <span>Anytime-Anywhere</span>
-                <span>"Unlock personalized guidance and refine your exercise form
-                    with our AI Fitness Coach, accessible anytime and anywhere you go!"</span>
+                <span>Motivates You to </span>
+                <span>Exercise Daily and</span>
+                <span>Stay Away from Medicines</span>
+                <span>"Experience personalized support and enhance your workout routine
+                    with our AI Fitness Coach, available whenever and wherever you need it,
+                    inspiring you to commit to daily exercise and maintain a healthy lifestyle without relying on medications.
+                    !"</span>
             </div>
         </div>
     );

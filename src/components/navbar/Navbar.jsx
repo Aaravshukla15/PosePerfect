@@ -77,18 +77,15 @@ const Navbar = () => {
               <NavLink className='links' to='/category'>Categories</NavLink>
             </li>
             <li className='nli'>
-              <NavLink className='links'>About</NavLink>
+              <NavLink className='links' to='/about'>About</NavLink>
             </li>
             {isMobile ? (
               <>
                 <li className='nli'>
-                  <NavLink className='links'>Dashboard</NavLink>
-                </li>
-                <li className='nli'>
                   <NavLink className='links'>User Profile</NavLink>
                 </li>
                 <li className='nli'>
-                  <NavLink className='links'>Creae New Account</NavLink>
+                  <NavLink className='links' to='/signup'>Creae New Account</NavLink>
                 </li>
                 <button className='buts'>
                   <NavLink className='links' to={buttonLink}>{buttonText}</NavLink>

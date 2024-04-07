@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Redirect.css';
 import Navbar from '../navbar/Navbar';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 // import newValue from '../login/login';
 
 const Redirect = () => {
@@ -112,21 +112,6 @@ const Redirect = () => {
         ));
     };
 
-    // const renderUserheight = () => {
-    //     if (!user) return null;
-
-    //     // Only include 'height' key
-    //     const selectedKeys = ['height', 'firstname'];
-
-    //     return selectedKeys.map(key => (
-    //         <li key={key}>
-    //             <strong>{key.charAt(0).toUpperCase() + key.slice(1)}:</strong> {user[0][key]}
-    //         </li>
-    //     ));
-    // };
-
-    console.log(renderUserData('height'));
-
 
 
     return (
@@ -148,7 +133,7 @@ const Redirect = () => {
                 <br />
                 <br />
                 <button onClick={handleLogout}>Logout</button>
-                <button ><Link className='sbtn'>Edit Profile</Link></button>
+                {/* <button ><Link className='sbtn'>Edit Profile</Link></button> */}
                 <br />
                 <br />
             </div>

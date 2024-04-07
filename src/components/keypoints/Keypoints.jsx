@@ -1,113 +1,27 @@
-// import React, { useRef } from "react";
-// import * as tf from "@tensorflow/tfjs";
-// import * as posenet from "@tensorflow-models/posenet";
-// import Webcam from "react-webcam";
-// import { drawKeypoints, drawSkeleton } from "./Utilities";
 
-// function Keypoints() {
-//     const webcamRef = useRef(null);
-//     const canvasRef = useRef(null);
-
-//     //  Load posenet
-//     const runPosenet = async () => {
-//         const net = await posenet.load({
-//             inputResolution: { width: 640, height: 480 },
-//             scale: 0.8,
-//         });
-//         //
-//         setInterval(() => {
-//             detect(net);
-//         }, 100);
-//     };
-
-//     const detect = async (net) => {
-//         if (
-//             typeof webcamRef.current !== "undefined" &&
-//             webcamRef.current !== null &&
-//             webcamRef.current.video.readyState === 4
-//         ) {
-//             // Get Video Properties
-//             const video = webcamRef.current.video;
-//             const videoWidth = webcamRef.current.video.videoWidth;
-//             const videoHeight = webcamRef.current.video.videoHeight;
-
-//             // Set video width
-//             webcamRef.current.video.width = videoWidth;
-//             webcamRef.current.video.height = videoHeight;
-
-//             // Make Detections
-//             const pose = await net.estimateSinglePose(video);
-//             console.log(pose);
-
-//             drawCanvas(pose, video, videoWidth, videoHeight, canvasRef);
-//         }
-//     };
-
-//     const drawCanvas = (pose, video, videoWidth, videoHeight, canvas) => {
-//         const ctx = canvas.current.getContext("2d");
-//         canvas.current.width = videoWidth;
-//         canvas.current.height = videoHeight;
-
-//         drawKeypoints(pose["keypoints"], 0.6, ctx);
-//         drawSkeleton(pose["keypoints"], 0.7, ctx);
-//     };
-
-//     runPosenet();
-
-//     return (
-//         <div className="App">
-//             <header className="App-header">
-//                 <Webcam
-//                     ref={webcamRef}
-//                     style={{
-//                         position: "absolute",
-//                         marginLeft: "auto",
-//                         marginRight: "auto",
-//                         left: 0,
-//                         right: 0,
-//                         textAlign: "center",
-//                         zindex: 9,
-//                         width: 640,
-//                         height: 480,
-//                     }}
-//                 />
-
-//                 <canvas
-//                     ref={canvasRef}
-//                     style={{
-//                         position: "absolute",
-//                         marginLeft: "auto",
-//                         marginRight: "auto",
-//                         left: 0,
-//                         right: 0,
-//                         textAlign: "center",
-//                         zindex: 9,
-//                         width: 640,
-//                         height: 480,
-//                     }}
-//                 />
-//             </header>
-//         </div>
-//     );
-// }
-
-// export default Keypoints;
 
 
 // WebcamDetection.js
 import React, { useState, useEffect } from 'react';
 import { PoseLandmarker, DrawingUtils, FilesetResolver } from "@mediapipe/tasks-vision";
+import './Keypoints.css';
+import Aligns from '../exDetail/Exdetail'
 
 function WebcamDetection() {
+    const [isHovered, setIsHovered] = useState(false);
     const [poseLandmarker, setPoseLandmarker] = useState(null);
     const [runningMode, setRunningMode] = useState("IMAGE");
     const [webcamRunning, setWebcamRunning] = useState(false);
+    const align = Aligns;
+    const userHeight = 180;
 
     useEffect(() => {
         const createPoseLandmarker = async () => {
             const vision = await FilesetResolver.forVisionTasks(
-                "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.0/wasm"
+                // "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.0/wasm"
+                "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@latest/wasm"
             );
+
             const newPoseLandmarker = await PoseLandmarker.createFromOptions(vision, {
                 baseOptions: {
                     modelAssetPath: `https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_lite/float16/1/pose_landmarker_lite.task`,
@@ -121,43 +35,73 @@ function WebcamDetection() {
         createPoseLandmarker();
     }, [runningMode]);
 
-    const handleClick = async (event) => {
-        if (!poseLandmarker) {
-            console.log("Wait for poseLandmarker to load before clicking!");
-            return;
+    const drawBoundingBox = (canvasElement, landmarks, userHeight) => {
+        const canvas = canvasElement;
+        const ctx = canvas.getContext('2d');
+
+        // Get frame dimensions
+        const frameWidth = canvas.width;
+        const frameHeight = canvas.height;
+
+        // Calculate rectangle dimensions
+        const xCenter = frameWidth / 2;
+        const yCenter = frameHeight / 2;
+        let rectHeight = frameHeight - (frameHeight * 0.30); // 30% of the frame
+        let rectWidth = frameWidth - (frameWidth * 0.30); // 30% of the frame
+
+        // Adjust height and width according to user's height and alignment
+        // const align = 'V'; // Vertical alignment, you can change it to 'H' for horizontal
+        // const userHeight = 100; // Example user height, replace with actual value
+        if (align === 'V') {
+            rectHeight = frameHeight - (frameHeight * 0.35);
+            rectWidth = frameWidth - (frameWidth * 0.40);
+        } else if (align === 'H') {
+            rectHeight = frameHeight - (frameHeight * 0.50)
+            rectWidth = frameWidth - (frameWidth * 0.10);
         }
 
-        if (runningMode === "VIDEO") {
-            setRunningMode("IMAGE");
-            await poseLandmarker.setOptions({ runningMode: "IMAGE" });
-        }
+        // Calculate top-left and bottom-right corners
+        const topLeftX = Math.max(0, xCenter - rectWidth / 2);
+        const topLeftY = Math.max(0, yCenter - rectHeight / 2);
+        const bottomRightX = Math.min(frameWidth, topLeftX + rectWidth);
+        const bottomRightY = Math.min(frameHeight, topLeftY + rectHeight) + 30;
 
-        const allCanvas = event.target.parentNode.getElementsByClassName("canvas");
-        for (var i = allCanvas.length - 1; i >= 0; i--) {
-            const n = allCanvas[i];
-            n.parentNode.removeChild(n);
-        }
-
-        poseLandmarker.detect(event.target, (result) => {
-            const canvas = document.createElement("canvas");
-            canvas.setAttribute("class", "canvas");
-            canvas.setAttribute("width", event.target.naturalWidth + "px");
-            canvas.setAttribute("height", event.target.naturalHeight + "px");
-            canvas.style.left = "0px";
-            canvas.style.top = "0px";
-            canvas.style.width = event.target.width + "px";
-            canvas.style.height = event.target.height + "px";
-
-            event.target.parentNode.appendChild(canvas);
-            const canvasCtx = canvas.getContext("2d");
-            const drawingUtils = new DrawingUtils(canvasCtx);
-            for (const landmark of result.landmarks) {
-                drawingUtils.drawLandmarks(landmark, {
-                    radius: (data) => DrawingUtils.lerp(data.from ? data.from.z : 0, -0.15, 0.1, 5, 1)
-                });
-                drawingUtils.drawConnectors(landmark, PoseLandmarker.POSE_CONNECTIONS);
+        // Draw rectangle
+        ctx.strokeStyle = 'blue'; // Border color
+        ctx.lineWidth = 2; // Border width
+        ctx.strokeRect(topLeftX, topLeftY, bottomRightX - topLeftX, bottomRightY - topLeftY);
+        let isPersonDetected = false;
+        for (const landmark of landmarks) {
+            console.log("======", frameWidth, "========", frameHeight)
+            console.log('rect width : ', rectWidth, landmark.x)
+            console.log('rect height : ', rectHeight, landmark.y)
+            const x = landmark.x * frameWidth;
+            const y = landmark.y * frameHeight;
+            console.log(topLeftX, "--------------", x, '---------------', bottomRightX)
+            console.log(topLeftY, "**************", y, '***************', bottomRightY)
+            if (x >= topLeftX && x <= bottomRightX && y >= topLeftY && y <= bottomRightY) {
+                isPersonDetected = true;
+                console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1')
             }
-        });
+            else {
+                isPersonDetected = false;
+                break
+            }
+        }
+
+        // Draw text based on whether a person is detected inside the box or not
+        if (isPersonDetected) {
+            const text = 'Start Exercise...';
+            ctx.fillStyle = 'lightgreen'; // Text color
+            ctx.font = '25px Arial'; // Font
+            ctx.fillText(text, topLeftX, topLeftY - 5); // Position text above the rectangle
+        } else {
+            // Start exercise or perform other actions
+            const text = 'Get Inside....';
+            ctx.fillStyle = 'red'; // Text color
+            ctx.font = '25px Arial'; // Font
+            ctx.fillText(text, topLeftX, topLeftY - 5);
+        }
     };
 
     const enableCam = (event) => {
@@ -185,7 +129,9 @@ function WebcamDetection() {
         });
     };
 
+
     let lastVideoTime = -1;
+
     const predictWebcam = () => {
         const video = document.getElementById("webcam");
         const canvasElement = document.getElementById("output_canvas");
@@ -204,10 +150,19 @@ function WebcamDetection() {
                 canvasCtx.save();
                 canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
                 for (const landmark of result.landmarks) {
-                    drawingUtils.drawLandmarks(landmark, {
-                        radius: (data) => DrawingUtils.lerp(data.from ? data.from.z : 0, -0.15, 0.1, 5, 1)
-                    });
-                    drawingUtils.drawConnectors(landmark, PoseLandmarker.POSE_CONNECTIONS);
+                    const style = {
+                        color: 'white',
+                        fillColor: '#7CFC00',
+                        lineWidth: 3,
+                        radius: 8
+                    };
+                    // drawingUtils.drawLandmarks(landmark, {
+                    //     radius: (data) => DrawingUtils.lerp(data.from ? data.from.z : 0, -0.15, 0.1, 5, 1)
+                    // });
+                    drawingUtils.drawLandmarks(landmark, style);
+                    drawingUtils.drawConnectors(landmark, PoseLandmarker.POSE_CONNECTIONS, style);
+
+                    drawBoundingBox(canvasElement, landmark, userHeight);
                 }
                 canvasCtx.restore();
             });
@@ -218,18 +173,61 @@ function WebcamDetection() {
         }
     };
 
+    const buttonStyles = {
+        height: '50px',
+        width: '100%',
+        color: '#fff',
+        textAlign: 'center',
+        textTransform: 'none',
+        cursor: 'pointer',
+        backgroundColor: '#a300d1',
+        backgroundImage: 'linear-gradient(315deg, #a300d1, #ff844a)',
+        border: '1px solid',
+        borderRadius: '8px',
+        padding: '0 35px',
+        fontSize: '15px',
+        fontWeight: '500',
+        lineHeight: '50px',
+        // marginLeft: '65px',
+        // paddingLeft: '35px',
+        transition: 'all .2s ease-in-out',
+        display: 'inline-block',
+        ...(isHovered && {
+            backgroundColor: '#d10000',
+            backgroundImage: 'linear-gradient(315deg, #d10000, #d54aff)',
+            border: '8px solid linear-gradient(315deg, #a300d1, #ff844a)',
+            borderRadius: '50px'
+        })
+    };
+
     return (
         <div className='webacm-pg'>
-
-            <p>Stand in front of your webcam to get real-time pose detection.</p>
             <div id="liveView" className="videoView">
-                <button id="webcamButton" className="mdc-button mdc-button--raised" onClick={enableCam}>
-                    <span className="mdc-button__ripple"></span>
+                <button
+                    id="webcamButton"
+                    className="mdc-button mdc-button--raised exd-btn"
+                    onClick={enableCam}
+                    onMouseEnter={() => setIsHovered(true)}
+                    onMouseLeave={() => setIsHovered(false)}
+                    style={buttonStyles}
+                >                  <span className="mdc-button__ripple"></span>
                     <span className="mdc-button__label">ENABLE WEBCAM</span>
                 </button>
-                <div style={{ position: 'relative' }}>
-                    <video id="webcam" style={{ width: '1280px', height: '720px', position: 'absolute' }} autoPlay playsInline></video>
-                    <canvas className="output_canvas" id="output_canvas" width="1280" height="720" style={{ position: 'absolute', left: '0px', top: '0px' }}></canvas>
+                <div style={{ position: 'relative' }} className='cam-veiw'>
+                    {/* <video id="webcam" style={{ width: '820px', height: '820px', position: 'relative', }} autoPlay playsInline></video>
+                    <canvas id="output_canvas" width="820" height="20" style={{ position: 'absolute', left: '0px', top: '0px',  }}></canvas> */}
+                    <video
+                        id="webcam"
+                        style={{ width: '100%', height: '100%', position: 'relative', zIndex: 1 }}
+                        autoPlay
+                        playsInline
+                    ></video>
+                    <canvas
+                        id="output_canvas"
+                        width="820"
+                        height="420"
+                        style={{ position: 'absolute', left: '-6rem', top: '0px', zIndex: 2 }}
+                    ></canvas>
                 </div>
             </div>
         </div>
@@ -237,3 +235,4 @@ function WebcamDetection() {
 }
 
 export default WebcamDetection;
+
