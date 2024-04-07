@@ -21,7 +21,7 @@
 
 .exd-left{
     flex: 1;
-    min-height: 50vh;
+    min-height: 60vh;
     /* justify-content: center;
     align-items: center; */
     display: flex;
@@ -87,7 +87,9 @@
 .exd-right{
     flex: 1;
     min-height: 60vh;
-    justify-content: center;
-    align-items: center;
     display: flex;
+}
+
+.exd-right>.webacm-pg{
+
 }

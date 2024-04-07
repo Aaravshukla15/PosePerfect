@@ -112,6 +112,22 @@ const Redirect = () => {
         ));
     };
 
+    // const renderUserheight = () => {
+    //     if (!user) return null;
+
+    //     // Only include 'height' key
+    //     const selectedKeys = ['height', 'firstname'];
+
+    //     return selectedKeys.map(key => (
+    //         <li key={key}>
+    //             <strong>{key.charAt(0).toUpperCase() + key.slice(1)}:</strong> {user[0][key]}
+    //         </li>
+    //     ));
+    // };
+
+    console.log(renderUserData('height'));
+
+
 
     return (
         <div className='main'>

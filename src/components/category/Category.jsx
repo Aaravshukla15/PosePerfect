@@ -11,6 +11,7 @@ const Category = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     const [exData, setExData] = useState([]);
+    const [exnName, setExnName] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -37,29 +38,49 @@ const Category = () => {
         setDisplayedExercises(displayedExercises + 14); // Increase the number of displayed exercises
     };
 
-    const handleExerciseClick = async (poseName) => {
+    //     const handleExerciseClick = async (exerciseName) => {
+    //     try {
+    //         const response = await axios.post('http://127.0.0.1:8000/api/Exercise/details/', {
+    //             POSE: exerciseName
+    //         });
+    //         console.log("success");
+    //         console.log(exerciseName);
+
+    //         if (response.status !== 200) {
+    //             throw new Error('Failed to fetch exercise details');
+    //         }
+
+    //         const data = response.data;
+    //         // Handle the fetched exercise data as needed
+    //         console.log(data);
+    //         console.log("Success");
+    //     } catch (error) {
+    //         console.error('Error fetching exercise details:', error);
+    //     }
+    // };
+
+    const handleExerciseClick = async (exerciseName) => {
         try {
             const response = await axios.post('http://127.0.0.1:8000/api/Exercise/details/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ POSE: poseName }) // Send pose name in the request body
+                POSE: exerciseName
             });
-            console.log("succses")
+            console.log("success");
+            console.log(exerciseName);
 
-            if (!response.ok) {
+            if (response.status !== 200) {
                 throw new Error('Failed to fetch exercise details');
             }
 
-            const data = await response.json();
+            const data = response.data;
             // Handle the fetched exercise data as needed
             console.log(data);
-            console.log("Succsess")
+            console.log("Success");
         } catch (error) {
             console.error('Error fetching exercise details:', error);
         }
     };
+
+
 
 
 
@@ -79,7 +100,7 @@ const Category = () => {
                         <div className='exerlist'>
                             {exData.slice(0, displayedExercises).map((exercise, index) => (
                                 <div key={index} className='exer'>
-                                    <span onClick={handleExerciseClick} > <a href='/exdetail'>{exercise}</a></span>
+                                    <span onClick={() => handleExerciseClick(exercise)}> <a href='/exdetail'>{exercise}</a></span>
                                 </div>
                             ))}
                         </div>)}

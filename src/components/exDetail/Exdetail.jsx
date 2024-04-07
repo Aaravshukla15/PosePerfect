@@ -80,6 +80,8 @@ import Navbar from '../navbar/Navbar';
 import Footer from '../footer/Footer';
 import { Link } from 'react-router-dom';
 import poseName from '../category/Category';
+import WebcamDetection from '../keypoints/Keypoints';
+import data from '../category/Category';
 
 const Exdetail = () => {
     const [isCameraOn, setIsCameraOn] = useState(false);
@@ -133,22 +135,9 @@ const Exdetail = () => {
                 <div className='exd-left'>
                     <span>Pose</span>
                     <span>Description</span>
-                    <div>
-                        <video ref={videoRef} style={{ display: isCameraOn ? 'block' : 'none' }} autoPlay />
-                        <button className='exd-btn' onClick={isCameraOn ? stopCamera : startCamera}>
-                            <Link to='/keypoints'>{isCameraOn ? 'Stop Camera' : 'Start Camera'}</Link>
-                        </button>
-                    </div>
                 </div>
                 <div className='exd-right'>
-                    {/* Display exercise details here */}
-                    {exerciseDetails && (
-                        <div>
-                            <h2>{exerciseDetails.pose}</h2>
-                            <p>{exerciseDetails.description}</p>
-                            {/* Render other details similarly */}
-                        </div>
-                    )}
+                    <WebcamDetection />
                 </div>
             </div>
             <br />
